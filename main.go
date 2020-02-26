@@ -22,7 +22,7 @@ func main() {
 
 func Walk(f *os.File) []string {
 	var r []string
-	base := f.Name()
+	base := basename(f)
 	info, err := os.Stat(f.Name())
 	if err != nil {
 		panic(err)
@@ -44,7 +44,7 @@ func Walk(f *os.File) []string {
 			r = append(r, r1...)
 		}
 	} else {
-		r = append(r, base+"/"+basename(f))
+		r = append(r, basename(f))
 	}
 	return r
 }
